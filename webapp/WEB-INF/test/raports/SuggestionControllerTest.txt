@@ -1,0 +1,27 @@
+Testsuite: library.test.SuggestionControllerTest
+Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 7,849 sec
+------------- Standard Output ---------------
+Test launches with frontendUser :library.security.AuthenticationFrontendUserDetails@ec25a4b5: Username: bartosz; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: ROLE_USER
+Testing suggestion Suggestion [id :0 , subscriber :Subscriber[id : 10, login : a, email : null, created : null, confirmed : 0, blacklisted : 0, passwordRepeated : null, oldEmail : null, bookingNb : 5, token = null, action=null] , title :testeurPass ,quantity :0 , state :1 , deliveryDate :Wed Apr 24 15:45:31 CEST 2013 ]
+Hibernate: select subscriber0_.id_su as id1_28_, subscriber0_.avatar_su as avatar2_28_, subscriber0_.blacklisted_su as blacklis3_28_, subscriber0_.booking_nb_su as booking4_28_, subscriber0_.confirmed_su as confirmed5_28_, subscriber0_.created_su as created6_28_, subscriber0_.email_su as email7_28_, subscriber0_.login_su as login8_28_, subscriber0_.password_su as password9_28_, subscriber0_.revival_su as revival10_28_ from subscriber subscriber0_ where subscriber0_.login_su=? limit ?
+Hibernate: select suggestion0_.id_sug as id1_31_, suggestion0_.delivery_sug as delivery2_31_, suggestion0_.quantity_sug as quantity3_31_, suggestion0_.state_sug as state4_31_, suggestion0_.subscriber_id_su as subscriber6_31_, suggestion0_.title_sug as title5_31_ from suggestion suggestion0_ where suggestion0_.title_sug=? limit ?
+Hibernate: insert into suggestion (delivery_sug, quantity_sug, state_sug, subscriber_id_su, title_sug) values (?, ?, ?, ?, ?)
+viewResult is redirect:/suggestions/newbindingResult is org.springframework.validation.BeanPropertyBindingResult: 0 errors------------- ---------------- ---------------
+------------- Standard Error -----------------
+log4j:WARN No appenders could be found for logger (org.springframework.test.context.junit4.SpringJUnit4ClassRunner).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+------------- ---------------- ---------------
+
+Testcase: testExceptionCapted took 7,828 sec
+	FAILED
+Expected exception: java.lang.Exception
+junit.framework.AssertionFailedError: Expected exception: java.lang.Exception
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+

@@ -1,0 +1,13 @@
+Testsuite: library.test.ToolTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 7,492 sec
+------------- Standard Output ---------------
+null
+org.springframework.mock.web.MockServletContext@7db7d
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+log4j:WARN No appenders could be found for logger (org.springframework.test.context.junit4.SpringJUnit4ClassRunner).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+------------- ---------------- ---------------
+
+Testcase: testMailerTool took 7,482 sec

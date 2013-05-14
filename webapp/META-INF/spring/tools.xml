@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+<!-- TODO : rajoute une variable qui va représenter D:/resin-4.0.32/webapps/ROOT-->
+	<!-- store preferred language configuration in a cookie -->
+	<beans:bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver"> 
+        <!--<property name="cookieName" value="locale" />-->
+        <beans:property name="defaultLocale" value="fr" />
+	</beans:bean>
+    <!--<context:annotation-config/>-->
+    <!--<context:annotation-config/>-->
+    <!--<context:component-scan base-package="org.springframework.ui.velocity"/>-->
+    <!--<context:component-scan base-package="library.tools"/>-->
+    <!-- Mail configuration -->
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <beans:property name="host" value="smtp.gmail.com" />
+	    <beans:property name="port" value="587" />
+	    <beans:property name="username" value="X@gmail.com" />
+	    <beans:property name="password" value="X" />
+ 
+    	<beans:property name="javaMailProperties">
+	        <beans:props>
+       	        <beans:prop key="mail.smtp.auth">true</beans:prop>
+       	        <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+       	    </beans:props>
+	    </beans:property>
+    </beans:bean>
+
+<!-- TODO : à priori le fragment D:/resin-4.0.32/webapps/ROOT/WEB-INF/views_mails fonctionne; il faudra peut-être supprimer loader = class et laisser tel quel -->
+<!-- TODO : aborder http://blog-dev.net/technique/java/spring-java/mettre-en-place-un-fichier-de-configuration-avec-spring/001025 PropertyPlaceholderConfigurer-->
+    <beans:bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <beans:property name="velocityProperties">
+            <beans:value>
+                resource.loader = file
+                file.resource.loader.path = D:/resin-4.0.32/webapps/ROOT/WEB-INF/views_mails
+                file.resource.loader.class = org.apache.velocity.runtime.resource.loader.FileResourceLoader
+            </beans:value>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="mailerTool" name="mailerTool" class="library.tools.MailerTool">
+	    <beans:property name="mailSender" ref="mailSender" />
+        <beans:property name="velocityEngine" ref="velocityEngine"/>
+	    <beans:property name="sender" value="bartkonieczny@gmail.com" />
+	    <beans:property name="localeResolver" ref="localeResolver" />
+    </beans:bean>
+
+    <beans:bean id="utilitaryTool" name="UtilitaryTool" class="library.tools.UtilitaryTool">
+    </beans:bean>
+    
+    <!--
+    Configuration of image uploader. It allows to upload one file and make from it one or more 
+    other files (thumbs). Every map entry corresponds to generated image. This image contains
+    following configuration entries : 
+    - directory : target directory
+    - prefix : prefix added to generated image
+    - height : max height of generated image
+    - width : max width of generated image
+    - ratio : ratio's code applied to generated image (accepted codes : AUTO, 
+              STATIC, NO). If STATIC code is defined, the image will take the dimensions 
+              precised for height and width keys. For NO code, resize won't be done.
+    - extension : output file extension
+    -->
+    <beans:bean id="imageTool" name="imageTool" class="library.tools.ImageTool">
+        <beans:property name="config">
+            <beans:map>
+                <beans:entry key="avatar">
+                    <beans:map>
+                        <beans:entry key="image1">
+                            <beans:map>
+                                <beans:entry key="directory" value="avatars" />
+                                <beans:entry key="prefix" value="av_" />
+                                <beans:entry key="height"><beans:value type="int">40</beans:value></beans:entry>
+                                <beans:entry key="width"><beans:value type="int">80</beans:value></beans:entry>
+                                <beans:entry key="ratio" value="AUTO" />
+                                <beans:entry key="extension" value="gif" />
+                            </beans:map>
+                        </beans:entry>
+                        <beans:entry key="image2">
+                            <beans:map>
+                                <beans:entry key="directory" value="avatars" />
+                                <beans:entry key="prefix" value="" />
+                                <beans:entry key="height"><beans:value type="int">0</beans:value></beans:entry>
+                                <beans:entry key="width"><beans:value type="int">0</beans:value></beans:entry>
+                                <beans:entry key="ratio" value="NO" />
+                                <beans:entry key="extension" value="gif" />
+                            </beans:map>
+                        </beans:entry>
+                    </beans:map>
+                </beans:entry>
+            </beans:map>
+        </beans:property>
+        <beans:property name="filesDir" value="files" />
+        <beans:property name="temporaryDir" value="temporary" />
+    </beans:bean>
+<!-- TODO : 
+- rajouter PdfTool et ExcelTool qui vont exporter les éléments et retourner directement les documents avec response.setContentType();
+-->
+</beans:beans>

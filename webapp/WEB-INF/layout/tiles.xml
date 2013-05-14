@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="standardLayoutBackend" template="/WEB-INF/layout/backend/standard.jsp">
+        <put-attribute name="body" value="" />
+    </definition>
+    <definition name="standardLayout" template="/WEB-INF/layout/standard.jsp">
+        <put-attribute name="body" value="" />
+        <put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
+        <put-attribute name="left" value="/WEB-INF/layout/left.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    </definition>
+    <definition name="standardAjaxLayout" template="/WEB-INF/layout/standardAjax.jsp">
+        <put-attribute name="body" value="" />
+    </definition>
+    <definition name="homePage" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
+    </definition>
+    <definition name="sessionExpired" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/sessionExpired.jsp" />
+    </definition>
+    <definition name="register" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/register.jsp" />
+    </definition>
+    <definition name="registerSuccess" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/registerSuccess.jsp" />
+    </definition>
+    <definition name="registerConfirm" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/registerConfirm.jsp" />
+    </definition>
+    <definition name="modify" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/modify.jsp" />
+    </definition>
+    <definition name="modifyPassword" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/modifyPassword.jsp" />
+    </definition>
+    <definition name="avatarForm" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/avatarForm.jsp" />
+    </definition>
+    <definition name="allBooks" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/book/allBooks.jsp" />
+    </definition>
+    <definition name="showBook" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/book/showBook.jsp" />
+    </definition>
+<!-- test only -->
+    <definition name="testBook" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/book/testBook.jsp" />
+    </definition>
+<!-- end -->
+    <definition name="showBookSummary" extends="standardAjaxLayout">
+        <put-attribute name="body" value="/WEB-INF/views/book/showBookSummary.jsp" />
+    </definition>
+    <definition name="listBooksByCategory" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/book-category/allBooks.jsp" />
+    </definition>
+    <definition name="accessDenied" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/index/accessDenied.jsp" />
+    </definition>
+    <definition name="login" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscriber/login.jsp" />
+    </definition>
+    <definition name="doBorrow" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/borrowing/doBorrow.jsp" />
+    </definition>
+    <definition name="returnBorrowing" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/borrowing/returnBorrowing.jsp" />
+    </definition>
+    <definition name="doBooking" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/booking/doBooking.jsp" />
+    </definition>
+    <definition name="questionWrite" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/question/questionWrite.jsp" />
+    </definition>
+    <definition name="newSuggestion" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/suggestion/newSuggestion.jsp" />
+    </definition>
+    <definition name="subscribe" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscription/subscribe.jsp" />
+    </definition>
+    <definition name="transferSubscribe" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscription/transferSubscribe.jsp" />
+    </definition>
+    <definition name="transferDecision" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscription/transferDecision.jsp" />
+    </definition>
+    <definition name="confirmSubscribe" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/subscription/confirmSubscribe.jsp" />
+    </definition>
+    <definition name="confirmPayment" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/payment/confirmPayment.jsp" />
+    </definition>
+    <definition name="penaltyPay" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/penalty/pay.jsp" />
+    </definition>
+    <definition name="confirmPenalty" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/penalty/confirmPenalty.jsp" />
+    </definition>
+    <definition name="chatRoom" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/chat/room.jsp" />
+    </definition>
+    <definition name="chatTest" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/chat/chatTest.jsp" />
+    </definition>
+    <definition name="newsPreferenciesCredentials" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/credentials.jsp" />
+    </definition>
+    <definition name="newsPreferenciesPrefs" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/preferencies.jsp" />
+    </definition>
+    <definition name="newsPreferenciesSummary" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/summary.jsp" />
+    </definition>
+    <definition name="newsPreferenciesLast" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/last.jsp" />
+    </definition>
+    <definition name="newsPreferenciesModify" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/modify.jsp" />
+    </definition>
+    <definition name="newsGetValues" extends="standardAjaxLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/getValues.jsp" />
+    </definition>
+    <definition name="newsletterConfirm" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/confirm.jsp" />
+    </definition>
+    <definition name="newsletterUnsubscribe" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/newsletter/unsubscribe.jsp" />
+    </definition>
+    <definition name="contentPage" extends="standardLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/contentPage.jsp" />
+    </definition>
+    <definition name="backendLogin" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/index/login.jsp" />
+    </definition>
+    <definition name="backendDashboard" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/index/dashboard.jsp" />
+    </definition>
+    <definition name="backedAccessDenied" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/index/accessDenied.jsp" />
+    </definition>
+    <definition name="categoryAdd" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/category/add.jsp" />
+    </definition>
+    <definition name="categoryLangAdd" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/category-lang/add.jsp" />
+    </definition>
+    <definition name="writerAdd" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/writer/add.jsp" />
+    </definition>
+    <definition name="writerLangAdd" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/writer-lang/add.jsp" />
+    </definition>
+    <definition name="bookAdd" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/book/add.jsp" />
+    </definition>
+    <definition name="replyAdd" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/reply/add.jsp" />
+    </definition>
+    <definition name="questionRead" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/question/read.jsp" />
+    </definition>
+    <definition name="acceptPayment" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/payment/accept.jsp" />
+    </definition>
+    <definition name="acceptPenaltyPayment" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/payment/acceptPenalty.jsp" />
+    </definition>
+    <definition name="consultChat" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/chat/consultChat.jsp" />
+    </definition>
+    <definition name="newsletterWrite" extends="standardLayoutBackend">
+        <put-attribute name="body" value="/WEB-INF/views/backend/newsletter/newsletterWrite.jsp" />
+    </definition>
+</tiles-definitions>

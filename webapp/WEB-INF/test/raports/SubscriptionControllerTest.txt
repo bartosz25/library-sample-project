@@ -1,0 +1,55 @@
+Testsuite: library.test.SubscriptionControllerTest
+Tests run: 2, Failures: 2, Errors: 0, Time elapsed: 39,791 sec
+------------- Standard Output ---------------
+Test launches with anonymousUser :org.springframework.security.authentication.AnonymousAuthenticationToken@52a3d06d: Principal: anonymous; Credentials: [PROTECTED]; Authenticated: true; Details: null; Granted Authorities: ROLE_ANONYMOUS
+Test launches with frontendUser :library.security.AuthenticationFrontendUserDetails@ec25a4b5: Username: bartosz; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: ROLE_USER
+Hibernate: select subscriber0_.id_su as id1_28_, subscriber0_.avatar_su as avatar2_28_, subscriber0_.blacklisted_su as blacklis3_28_, subscriber0_.booking_nb_su as booking4_28_, subscriber0_.confirmed_su as confirmed5_28_, subscriber0_.created_su as created6_28_, subscriber0_.email_su as email7_28_, subscriber0_.login_su as login8_28_, subscriber0_.password_su as password9_28_, subscriber0_.revival_su as revival10_28_ from subscriber subscriber0_ where subscriber0_.login_su=? limit ?
+Test launches with existingSubscriber :Subscriber[id : 12, login : kamil, email : bartkonieczny@gmail.com, created : 2012-12-18 11:38:29.0, confirmed : 1, blacklisted : 0, passwordRepeated : null, oldEmail : null, bookingNb : 0]
+Hibernate: select count(subscriber0_.id_su) as col_0_0_ from subscriber subscriber0_ limit ?
+Testing subscriber Subscriber[id : 0, login : test00, email : bartkonieczny@gmail.com, created : null, confirmed : 0, blacklisted : 0, passwordRepeated : testeurPass, oldEmail : null, bookingNb : 5]
+Hibernate: select subscriber0_.id_su as id1_28_, subscriber0_.avatar_su as avatar2_28_, subscriber0_.blacklisted_su as blacklis3_28_, subscriber0_.booking_nb_su as booking4_28_, subscriber0_.confirmed_su as confirmed5_28_, subscriber0_.created_su as created6_28_, subscriber0_.email_su as email7_28_, subscriber0_.login_su as login8_28_, subscriber0_.password_su as password9_28_, subscriber0_.revival_su as revival10_28_ from subscriber subscriber0_ where subscriber0_.login_su=?
+Hibernate: select subscriber0_.id_su as id1_28_, subscriber0_.avatar_su as avatar2_28_, subscriber0_.blacklisted_su as blacklis3_28_, subscriber0_.booking_nb_su as booking4_28_, subscriber0_.confirmed_su as confirmed5_28_, subscriber0_.created_su as created6_28_, subscriber0_.email_su as email7_28_, subscriber0_.login_su as login8_28_, subscriber0_.password_su as password9_28_, subscriber0_.revival_su as revival10_28_ from subscriber subscriber0_ where subscriber0_.email_su=?
+Data to convert :[ConstraintViolationImpl{interpolatedMessage='Login is already in use by other user. Please choose the another one.', propertyPath=login, rootBeanClass=class library.model.entity.Subscriber, messageTemplate='Login is already in use by other user. Please choose the another one.'}, ConstraintViolationImpl{interpolatedMessage='E-mail is already in use by other user. Please choose the another one.', propertyPath=email, rootBeanClass=class library.model.entity.Subscriber, messageTemplate='E-mail is already in use by other user. Please choose the another one.'}]
+BindingResult after conversion org.springframework.validation.BeanPropertyBindingResult: 2 errors
+Field error in object 'library.model.entity.Subscriber' on field 'login': rejected value [null]; codes []; arguments []; default message [Login is already in use by other user. Please choose the another one.]
+Field error in object 'library.model.entity.Subscriber' on field 'email': rejected value [null]; codes []; arguments []; default message [E-mail is already in use by other user. Please choose the another one.]
+Hibernate: select count(subscriber0_.id_su) as col_0_0_ from subscriber subscriber0_ limit ?
+Testing subscriber Subscriber[id : 0, login : test00, email : bartkonieczny+35904033@gmail.com, created : null, confirmed : 0, blacklisted : 0, passwordRepeated : testeurPass, oldEmail : null, bookingNb : 5]
+Hibernate: select subscriber0_.id_su as id1_28_, subscriber0_.avatar_su as avatar2_28_, subscriber0_.blacklisted_su as blacklis3_28_, subscriber0_.booking_nb_su as booking4_28_, subscriber0_.confirmed_su as confirmed5_28_, subscriber0_.created_su as created6_28_, subscriber0_.email_su as email7_28_, subscriber0_.login_su as login8_28_, subscriber0_.password_su as password9_28_, subscriber0_.revival_su as revival10_28_ from subscriber subscriber0_ where subscriber0_.login_su=?
+Hibernate: select subscriber0_.id_su as id1_28_, subscriber0_.avatar_su as avatar2_28_, subscriber0_.blacklisted_su as blacklis3_28_, subscriber0_.booking_nb_su as booking4_28_, subscriber0_.confirmed_su as confirmed5_28_, subscriber0_.created_su as created6_28_, subscriber0_.email_su as email7_28_, subscriber0_.login_su as login8_28_, subscriber0_.password_su as password9_28_, subscriber0_.revival_su as revival10_28_ from subscriber subscriber0_ where subscriber0_.email_su=?
+Data to convert :[ConstraintViolationImpl{interpolatedMessage='Login is already in use by other user. Please choose the another one.', propertyPath=login, rootBeanClass=class library.model.entity.Subscriber, messageTemplate='Login is already in use by other user. Please choose the another one.'}]
+BindingResult after conversion org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'library.model.entity.Subscriber' on field 'login': rejected value [null]; codes []; arguments []; default message [Login is already in use by other user. Please choose the another one.]
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+log4j:WARN No appenders could be found for logger (org.springframework.test.context.junit4.SpringJUnit4ClassRunner).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+------------- ---------------- ---------------
+
+Testcase: testRegisterInvalid took 39,401 sec
+	FAILED
+Invalid validation errors quantity expected:<1> but was:<2>
+junit.framework.AssertionFailedError: Invalid validation errors quantity expected:<1> but was:<2>
+	at library.test.SubscriptionControllerTest.testRegisterInvalid(SubscriptionControllerTest.java:122)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+
+Testcase: testRegisterValid took 0,33 sec
+	FAILED
+Invalid validation errors quantity expected:<0> but was:<1>
+junit.framework.AssertionFailedError: Invalid validation errors quantity expected:<0> but was:<1>
+	at library.test.SubscriptionControllerTest.testRegisterValid(SubscriptionControllerTest.java:157)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+

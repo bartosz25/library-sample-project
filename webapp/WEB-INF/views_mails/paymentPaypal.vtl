@@ -1,0 +1,24 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#testform').submit();
+});
+</script>
+<form id="testform" method="post" action="${url}">
+<input type="hidden" name="rm" value="2" id="PayPalRm" /> <!-- return method 2 : POST -->
+<input type="hidden" name="cmd" value="_xclick" id="PayPalCmd" />
+<INPUT TYPE="hidden" NAME="currency_code" value="EUR">
+<INPUT TYPE="hidden" NAME="tax" value="0">
+<input type="hidden" name="business" value="${business}" id="PayPalBusiness" /> 
+<input type="hidden" name="return" value="${baseUrl}${returnUrl}" id="PayPalReturn" />
+<input type="hidden" name="cancel_return" value="${baseUrl}${returnCancelUrl}" id="PayPalCancelReturn" />
+<input type="hidden" name="notify_url" value="${baseUrl}${notifyUrl}" id="PayPalNotifyUrl" />
+<input type="hidden" name="item_name" value="Order ${order}" id="PayPalItemName" />
+<input type="hidden" name="no_shipping" value="1" id="PayPalNoShipping" />
+<input type="hidden" name="shipping" value="0" id="PayPalShipping" />
+<input type="hidden" name="no_note" value="1" id="PayPalNoNote" />
+<input type="hidden" name="lc" value="FR" id="PayPalLc" />
+<input type="hidden" name="charset" value="UTF-8" />
+<input type="hidden" name="country" value="FR" id="PayPalCountry" />
+<input type="hidden" name="amount" value="${amount}" id="PayPalAmount" />
+<div class="submit"><input type="submit" value="Click Here" /></div></form>
+              </div>
