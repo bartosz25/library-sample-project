@@ -37,3 +37,7 @@ Also, some of TODOs remain :
 
 9) Maven : 
 - replace ANT deployment by Maven
+
+
+You can find more informations about developping of Spring applications on this page : 
+http://www.bart-konieczny.com/fr/spring-par-pratique (available actually only in French)
