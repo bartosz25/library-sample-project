@@ -1,8 +1,0 @@
-package library.model.entity;
-
-import java.io.Serializable;
-
-public class Moderator implements Serializable
-{
-
-}
