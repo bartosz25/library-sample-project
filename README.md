@@ -36,6 +36,7 @@ Also, some of TODOs remain :
 - remove all unused files under /META-INF/spring
 
 10) After adding Maven dependency handling, correct webapp styles and JavaScripts
+
 ----------------------------------------
 DONE tasks :
 
