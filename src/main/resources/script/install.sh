@@ -1,0 +1,6 @@
+#!/bin/bash
+echo Hello World
+base=$1
+user=$2
+password=$3
+echo "mysql -u $user --password=$password"

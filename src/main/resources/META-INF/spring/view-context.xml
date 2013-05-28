@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd     
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd     
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+<bean id="viewResolver"
+    class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <property name="viewClass">
+        <value>
+            org.springframework.web.servlet.view.tiles2.TilesView
+        </value>
+    </property>
+</bean>
+	<!-- Initializes the Apache Tiles CompositeView system -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<!--<value>
+				/WEB-INF/**/tiles.xml
+			</value>-->
+			<value>
+				/WEB-INF/classes/layout/tiles.xml
+			</value>
+		</property>
+	</bean>
+	<!-- Resolves localized messages*.properties and application.properties files in the application to	allow for internationalization. 
+		The messages*.properties files translate messages, the application.properties
+		resource bundle localizes all application specific messages such as entity names and menu items. -->
+	<bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource">
+	  <property name="basenames">
+	    <list>
+	      <value>/WEB-INF/classes/i18n/ValidationMessages</value>
+	      <value>/WEB-INF/classes/i18n/messages</value>
+	      <value>/WEB-INF/classes/i18n/application</value>
+	    </list>
+	  </property>
+	  <property name="defaultEncoding" value="UTF-8"/>
+	  <property name="fallbackToSystemLocale" value="false"/>
+	</bean>
+<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <property name="exposedContextBeanNames">
+      <list>
+         <value>pageContentService</value>
+         <value>pageContentService</value>
+      </list>
+   </property>
+</bean>-->
+</beans> 

@@ -1,0 +1,33 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+    <input name="email" value="conversationScope.email" />  
+    <input name="preferencies" value="conversationScope.preferencies" />
+    <input name="couponId" value="conversationScope.couponId" /> 
+    <view-state id="preferencies" view="newsPreferenciesPrefs" > 
+        <on-entry>
+            <evaluate expression="currentUser != null ? newsletterPreferencyService.createPreferenciesForm(currentUser, conversationScope)  : newsletterPreferencyService.createPreferenciesForm(null, conversationScope)" result="viewScope.newsPreferenciesCredentialsForm" />
+        </on-entry>
+        <on-render>            
+            <evaluate expression="langService.getViewCommunsFromRequest(null, null)" result="viewScope.communs" />
+        </on-render>
+        <transition on="previous" to="credentialsEnd" />
+        <transition on="submit" to="summary" />
+	</view-state>
+	<end-state id="credentialsEnd" commit="true">
+        <!--<output name="email" value="conversationScope.email" />
+        <output name="preferencies" value="conversationScope.preferencies" />-->
+	</end-state>
+	<end-state id="lastFlow" />
+    <subflow-state id="summary" subflow="newsletter-summary">
+        <!-- input est nécessaire pour passer des valeurs d'un flow à l'autre - sinon les valeurs vides vont passer-->
+        <input name="email" value="conversationScope.email" />
+        <input name="preferencies" value="requestParameters.preferencies" />
+        <!-- ce couponId est repris sur la page summary -->
+        <input name="couponId" type="long" value="323" required="true" />
+        <transition on="preferenciesEnd" to="preferencies" />
+        <transition on="credentialsEnd" to="credentialsEnd" />
+        <transition on="lastFlow" to="lastFlow" />
+    </subflow-state>
+</flow>

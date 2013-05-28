@@ -1,0 +1,45 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+    <input name="email" value="conversationScope.email" />
+    <input name="preferencies" value="conversationScope.preferencies" /> 
+    <input name="couponId" value="conversationScope.couponId" />
+    <view-state id="summary" view="newsPreferenciesSummary" model="newsPreferenciesCredentialsForm">
+        <on-entry>
+            <evaluate expression="currentUser == null ? newsletterPreferencyService.createPasswordForm() : null" result="viewScope.newsPreferenciesCredentialsForm" />
+        </on-entry>
+        <on-render>            
+            <evaluate expression="langService.getViewCommunsFromRequest(null, null)" result="viewScope.communs" />
+        </on-render>
+        <transition on="preferencies" to="preferenciesEnd" />
+        <transition on="credentials" to="credentialsEnd" />
+        <transition on="submit" to="lastFlow" bind="true" validate="true">
+            <evaluate expression="currentUser != null ? newsletterSubscriberService.addFromFlow(conversationScope, currentUser, null) :
+            newsletterSubscriberService.addFromFlow(conversationScope, null, requestParameters.password)" />
+        </transition>
+    </view-state>
+    <end-state id="preferenciesEnd" />
+	<end-state id="credentialsEnd" />
+	<end-state id="lastFlow" />
+    <!-- todo : à virer -->
+    <on-end>
+      <evaluate expression="newsletterPreferencyService.testCoupon()" result="conversationScope.couponId" />
+    </on-end>
+</flow>
+<!--
+UTILISER pour convertir
+ <binder>
+        <binding property="checkinDate" converter="shortDate" required="true" />
+        <binding property="checkoutDate" converter="shortDate" required="true" />
+        <binding property="creditCard" required="true" />
+        <binding property="creditCardName" required="true" />
+        <binding property="creditCardExpiryMonth" required="true" />
+        <binding property="creditCardExpiryYear" required="true" />
+    </binder>
+	-->
+<!-- 
+TODOS : 
+- construire la liste des choix à l'affichage (libellé = valeur traduite)
+- ajouter un end-state avec la sauvegarde de toutes les données dans la base
+-->

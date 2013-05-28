@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"
+     >
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--<tx:annotation-driven transaction-manager="transactionManager" />
+	http://static.springsource.org/spring/docs/2.0.x/reference/transaction.html
+	TIP : 
+	You can actually omit the 'transaction-manager' attribute in the transactional advice (<tx:advice/>) if the bean name of the PlatformTransactionManager that you want to wire in has the name 'transactionManager'. If the PlatformTransactionManager bean that you want to wire in has any other name, then you have to be explicit and use the 'transaction-manager' attribute as in the example above.
+
+	-->
+    <tx:annotation-driven />
+
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+            <!-- TODO : voir si l'on peut remplacer par Resolver de la librairie <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />-->
+        </property>        
+        <property name="packagesToScan" value="com.example.library.model.entity"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.max_fetch_depth">3</prop>
+                <prop key="hibernate.jdbc.fetch_size">50</prop>
+                <prop key="hibernate.jdbc.batch_size">10</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <!--<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>-->
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+       <!-- TODO : explication du 1st et 2nd level du cache :          
+http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html_single/#performance-cache
+http://stackoverflow.com/questions/5270998/spring-hibernate-ehcache?rq=1		http://stackoverflow.com/questions/337072/what-is-first-and-second-level-caching-in-hibernate
+				-->
+                
+                <!-- Pour Hibernate 3.x.x, factor_class serait net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory http://forums.terracotta.org/forums/posts/list/6674.page-->
+                <!-- Listeners for Hibernate Envers  
+              
+                <prop key="hibernate.ejb.event.post-insert">
+                    org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener
+                </prop>   
+                <prop key="hibernate.ejb.event.post-update">
+                    org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener
+                </prop>
+                <prop key="hibernate.ejb.event.post-delete">
+                    org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener
+                </prop>
+                <prop key="hibernate.ejb.event.pre-collection-update">
+                    org.hibernate.envers.event.AuditEventListener
+                </prop>
+                <prop key="hibernate.ejb.event.pre-collection-remove">
+                    org.hibernate.envers.event.AuditEventListener
+                </prop>
+                <prop key="hibernate.ejb.event.post-collection-recreate">
+                    org.hibernate.envers.event.AuditEventListener
+                </prop>
+                
+                 
+                <prop key="org.hibernate.envers.audit_table_suffix">_H</prop>
+                <prop key="org.hibernate.envers.revision_field_name">AUDIT_REVISION</prop>
+                <prop key="org.hibernate.envers.revision_type_field_name">ACTION_TYPE</prop>
+                <prop key="org.hibernate.envers.audit_strategy">org.hibernate.envers.strategy.ValidityAuditStrategy</prop>
+                <prop key="org.hibernate.envers.audit_strategy_validity_end_rev_field_name">AUDIT_REVISION_END</prop>
+                <prop key="org.hibernate.envers.audit_strategy_validity_store_revend_timestamp">true</prop>
+                <prop key="org.hibernate.envers.audit_strategy_validity_revend_timestamp_field_name">AUDIT_REVISION_END_TS</prop>      -->            
+            </props>        
+        </property>
+    </bean>
+    
+    <jpa:repositories base-package="com.example.library.model.repository"
+                      entity-manager-factory-ref="emf"
+                      transaction-manager-ref="transactionManager"/>
+    
+<!--    <jpa:auditing auditor-aware-ref="auditorAwareBean"/>
+    
+    <bean id="auditorAwareBean" class="com.apress.prospring3.springblog.auditor.AuditorAwareBean"/>-->
+
+</beans>

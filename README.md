@@ -35,6 +35,10 @@ Also, some of TODOs remain :
 - remove some of unused JARs 
 - remove all unused files under /META-INF/spring
 
+10) After adding Maven dependency handling, correct webapp styles and JavaScripts
+----------------------------------------
+DONE tasks :
+
 9) Maven : 
 - replace ANT deployment by Maven
 
